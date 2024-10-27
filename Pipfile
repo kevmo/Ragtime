@@ -1,0 +1,6 @@
+[packages]
+datasets = "*"
+elasticsearch = "*"
+streamlit = "*"
+transformers = "*"
+sentence-transformers = "*"
