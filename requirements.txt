@@ -1,0 +1,6 @@
+elasticsearch
+transformers==4.33.2
+torch==2.5.0
+datasets==2.14.4
+streamlit==1.25.0
+jupyter==1.0.0

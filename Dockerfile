@@ -1,20 +1,14 @@
 # Use the official Python image
-FROM python:3.13-slim
+FROM python:3.11-slim
 
 # Set the working directory
 WORKDIR /app
 
-# Copy Pipfile and Pipfile.lock
-COPY Pipfile* ./
-
-# Install Pipenv
-RUN pip install pipenv
+# Copy requirements.txt
+COPY requirements.txt .
 
 # Install dependencies
-RUN pipenv install --deploy --ignore-pipfile
-
-# Install Jupyter
-RUN pipenv run pip install jupyter
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the application code
 COPY ./app /app
@@ -22,11 +16,9 @@ COPY ./app /app
 # Copy notebooks
 COPY ./notebooks /notebooks
 
-# Expose Streamlit port
+# Expose Streamlit and Jupyter ports
 EXPOSE 8501
-
-# Expose Jupyter port
 EXPOSE 8888
 
-# Command to run the app
-CMD ["pipenv", "run", "streamlit", "run", "app.py"]
+# Command to run the Streamlit app by default
+CMD ["streamlit", "run", "app.py"]
