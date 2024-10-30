@@ -16,9 +16,15 @@ services:
       - elasticsearch
     ports:
       - 8501:8501   # Streamlit UI
-      - 8888:8888   # Jupyter Notebook
     volumes:
       - .:/app
+  
+  jupyter:
+    image: jupyter/base-notebook:latest
+    volumes:
+      - ./notebooks:/home/jovyan/work
+    ports:
+      - "8888:8888"
 
 volumes:
   esdata:
